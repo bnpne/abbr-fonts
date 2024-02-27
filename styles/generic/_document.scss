@@ -5,7 +5,7 @@
 }
 
 body {
-  @include outerGutters();
+  padding: desktop-vw(20px);
   background-color: var(--primary_background_color);
   color: var(--primary_text_color);
   -webkit-font-smoothing: antialiased;
@@ -14,6 +14,7 @@ body {
   display: flex;
   min-height: 100vh;
   flex-direction: column;
+  position: relative;
 }
 
 .main {
@@ -29,14 +30,14 @@ button {
 }
 
 a {
-  color: var(--link_color);
+  color: $transparent;
 
   &:hover {
-    color: var(--link_hover_color);
+    color: $black;
   }
 
   &.active {
-    color: var(--active_link_color);
+    color: $black;
   }
 }
 

@@ -1,5 +1,3 @@
-import {Layout} from '../../layouts/default'
-
 import Link from 'next/link'
 import {fetchGraphql} from '../../libs/graphql'
 import FontStyle from '../../components/FontStyle'
@@ -20,36 +18,34 @@ export default async function Home() {
   }
 
   return (
-    <Layout>
-      <section className="home">
-        {collections?.map(node => {
-          if (!node.slug) return
+    <section className="home">
+      {collections?.map(node => {
+        if (!node.slug) return
 
-          return (
-            <h2 key={node.id} className="home__collection">
-              <PreloadWebfonts style={node.featureStyle} />
-              <FontStyle
-                familyName={node.featureStyle?.cssFamily}
-                styleName={node.featureStyle?.name}
-                className="home__collection__name"
+        return (
+          <h2 key={node.id} className="home-collection">
+            <PreloadWebfonts style={node.featureStyle} />
+            <FontStyle
+              familyName={node.featureStyle?.cssFamily}
+              styleName={node.featureStyle?.name}
+              className="home-collection-name"
+            >
+              <Link
+                href={`/fonts/${node.slug.name}`}
+                className="home-collection-link"
+                style={{
+                  '--optical-adjustment': node.opticalAdjustment,
+                }}
               >
-                <Link
-                  href={`/fonts/${node.slug.name}`}
-                  className="home__collection__link"
-                  style={{
-                    '--optical-adjustment': node.opticalAdjustment,
-                  }}
-                >
-                  {node.name}
-                </Link>
-              </FontStyle>
-              {node.isNew && (
-                <span className="home__collection__new">&nbsp;New</span>
-              )}
-            </h2>
-          )
-        })}
-      </section>
-    </Layout>
+                {node.name}
+              </Link>
+            </FontStyle>
+            {node.isNew && (
+              <span className="home-collection-new">&nbsp;New</span>
+            )}
+          </h2>
+        )
+      })}
+    </section>
   )
 }

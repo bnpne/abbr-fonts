@@ -1,4 +1,9 @@
-@use "sass:math";
+@use 'sass:math';
+
+$white: #fff;
+$black: #000;
+$gray: #f8f8f8;
+$transparent: #13131366;
 
 :root {
   --window-height: 100vh;
@@ -23,7 +28,12 @@
     --gutter: #{(math.div(20px, 960px) * 100)}vw;
     --outer-gutter: #{(math.div(20px, 960px) * 100)}vw;
     --precart-width: calc(
-      (((100vw - (2 * var(--outer-gutter))) - ((var(--columns) - 1) * var(--gutter))) / var(--columns)) + var(--outer-gutter)
+      (
+          (
+              (100vw - (2 * var(--outer-gutter))) -
+                ((var(--columns) - 1) * var(--gutter))
+            ) / var(--columns)
+        ) + var(--outer-gutter)
     );
   }
 

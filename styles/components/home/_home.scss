@@ -1,23 +1,25 @@
 .home {
-  margin-top: 3rem;
-  margin-bottom: 1.5rem;
+  padding: desktop-vw(128px) 0;
 
-  &__collection {
+  &-collection {
     text-align: center;
-    margin-bottom: 3rem;
-    padding: 0 30px;
-    line-height: 1;
+    padding: desktop-vw(40px) 0;
+    // line-height: 1;
 
-    &__name {
-      --size: 40px;
-      font-size: calc(var(--optical-adjustment, 1) * var(--size));
+    &:nth-child(odd) {
+      background: $gray;
+    }
 
+    &-name {
+      // --size: 40px;
+      font-size: calc(var(--optical-adjustment, 1) * desktop-vw(120px));
+      line-height: 0.9;
       @include minWidth(desktop) {
-        --size: 90px;
+        // --size: 90px;
       }
     }
 
-    &__new {
+    &-new {
       vertical-align: top;
       display: inline-block;
       position: relative;
@@ -29,7 +31,7 @@
       }
     }
 
-    &__link {
+    &-link {
       @include resetLink();
       color: var(--primary_text_color);
     }

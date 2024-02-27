@@ -3,6 +3,10 @@ const withBundleAnalyzer = require('@next/bundle-analyzer')({
   enabled: process.env.ANALYZE === 'true',
 })
 
+const path = require('path')
+const sassUtils = require(__dirname + '/libs/sass-utils')
+const sassVars = require(__dirname + '/config/variables.js')
+
 const nextConfig = {
   transpilePackages: ['@studio-freight/compono'],
   experimental: {
@@ -28,7 +32,29 @@ const nextConfig = {
     ],
     formats: ['image/avif', 'image/webp'],
   },
-  sassOptions: {},
+  sassOptions: {
+    // add @import 'styles/_functions'; to all scss files.
+    includePaths: [path.join(__dirname, 'styles')],
+    prependData: `@import 'styles/tools/_functions';`,
+    functions: {
+      'get($keys)': function (keys) {
+        keys = keys.getValue().split('.')
+        let result = sassVars
+        for (let i = 0; i < keys.length; i++) {
+          result = result[keys[i]]
+        }
+        result = sassUtils.castToSass(result)
+
+        return result
+      },
+      'getColors()': function () {
+        return sassUtils.castToSass(sassVars.colors)
+      },
+      'getThemes()': function () {
+        return sassUtils.castToSass(sassVars.themes)
+      },
+    },
+  },
   webpack: (config, options) => {
     const {dir} = options
 
