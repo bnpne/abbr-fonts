@@ -1,5 +1,5 @@
 import React from 'react'
-import {fetchGraphql} from '/libs/graphql'
+import {fetchGraphql} from 'libs/graphql'
 import {notEmpty} from 'libs/graphql/utils'
 import {notFound} from 'next/navigation'
 import FontdueHTML from '/components/FontdueHTML'
