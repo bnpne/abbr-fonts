@@ -2,26 +2,39 @@
 
 import ActiveLink from './ActiveLink'
 import CartButton from 'fontdue-js/CartButton'
-import gsap from 'gsap'
 import {usePathname} from 'next/navigation'
-import {useEffect} from 'react'
+import {useEffect, useRef} from 'react'
+import gsap from 'gsap'
+import {useLenis} from '@studio-freight/react-lenis'
+import {useStore} from 'libs/store'
 
 export default function Nav({pages}) {
   const path = usePathname()
+  const nav = useRef()
+  const lenis = useLenis()
+  const n = useStore()
 
   useEffect(() => {
-    gsap.to('.nav-text', {
-      height: 0,
-      scrollTrigger: {
-        trigger: '.nav',
-        start: 'top top',
-        end: 'center top',
-        scrub: true,
-      },
-    })
-  }, [])
+    path === '/' &&
+      gsap.to('.nav-text', {
+        height: 0,
+        scrollTrigger: {
+          trigger: '.nav',
+          start: 'top top',
+          end: 'center top',
+          scrub: true,
+        },
+      })
+  }, [path])
+
+  useEffect(() => {
+    if (lenis) {
+      n.isNavOpened === true ? lenis.stop() : lenis.start()
+    }
+  }, [n.isNavOpened, lenis])
+
   return (
-    <nav className="nav" data-border="true">
+    <nav ref={nav} className="nav" data-border="true">
       {path === '/' && (
         <div className="nav-text">
           <div className="nav-text-title">ABBREVIATED FOUNDRY</div>
@@ -43,7 +56,7 @@ export default function Nav({pages}) {
         <ActiveLink className="nav-link" href="/customer-login">
           Log in
         </ActiveLink>
-        <div className="nav-link">
+        <div className="nav-link" onClick={() => n.setIsNavOpened(true)}>
           <CartButton label="Cart" buttonStyle="inline" />
         </div>
       </div>

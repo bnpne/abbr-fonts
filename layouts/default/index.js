@@ -6,12 +6,13 @@ import cn from 'clsx'
 import {gsap} from 'gsap'
 import {ScrollTrigger} from 'gsap/dist/ScrollTrigger'
 
-import 'styles/main.scss'
 if (typeof window !== 'undefined') {
   gsap.defaults({ease: 'none'})
   gsap.registerPlugin(ScrollTrigger)
   ScrollTrigger.clearScrollMemory(window.history.scrollRestoration)
-  ScrollTrigger.defaults({markers: true}) //process.env.NODE_ENV === 'development' })
+  ScrollTrigger.defaults({
+    markers: process.env.NODE_ENV === 'development' ? true : false,
+  })
 
   // merge rafs
   gsap.ticker.lagSmoothing(0)
@@ -23,8 +24,6 @@ if (typeof window !== 'undefined') {
   // reset scroll position
   window.scrollTo(0, 0)
   window.history.scrollRestoration = 'manual'
-
-  console.log('👋 Hello! 👀')
 }
 
 export function Layout({children, theme = 'light', className}) {

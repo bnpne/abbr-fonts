@@ -11,7 +11,6 @@
     }
 
     &-name {
-      // --size: 40px;
       font-size: calc(var(--optical-adjustment, 1) * desktop-vw(120px));
       line-height: 0.9;
       @include minWidth(desktop) {
@@ -33,7 +32,10 @@
 
     &-link {
       @include resetLink();
-      color: var(--primary_text_color);
+      color: $black;
+      &:hover {
+        color: var(--link_hover_color);
+      }
     }
   }
 }

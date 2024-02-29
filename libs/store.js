@@ -1,10 +1,10 @@
-import { shallow } from 'zustand/shallow'
-import { createWithEqualityFn } from 'zustand/traditional'
+import {shallow} from 'zustand/shallow'
+import {createWithEqualityFn} from 'zustand/traditional'
 
 export const useStore = createWithEqualityFn(
-  (set) => ({
+  set => ({
     isNavOpened: false,
-    setIsNavOpened: (value) => set({ isNavOpened: value }),
+    setIsNavOpened: value => set({isNavOpened: value}),
   }),
   shallow,
 )

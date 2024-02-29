@@ -1,0 +1,12 @@
+.store-modal {
+  &__container {
+    &__background {
+      background: #ffffff05;
+      backdrop-filter: blur(30px);
+    }
+
+    &__container {
+      border: 1px black solid;
+    }
+  }
+}

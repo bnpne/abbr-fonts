@@ -26,11 +26,11 @@ export default async function Page(props) {
   if (!page) notFound()
 
   return (
-    <main className="page">
-      <article className="markdown page__body">
+    <div className="page">
+      <article className="markdown page-body">
         {page.text && <FontdueHTML html={page.text} />}
       </article>
-    </main>
+    </div>
   )
 }
 

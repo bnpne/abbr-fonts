@@ -248,6 +248,24 @@ function FontDetail({collection}) {
       </div>
 
       <CharacterViewer collectionId={collection.id} />
+      <div className="collection-info__buybottom">
+        {showBuyButton(collection) && (
+          <BuyButton
+            collectionId={collection.id}
+            collectionName={collection.name}
+          />
+        )}
+        {collection.minisiteLink && (
+          <a
+            href={collection.minisiteLink}
+            className="collection-info__minisite-link"
+            target="_blank"
+            rel="noopener"
+          >
+            {`${collection.name} Minisite`}
+          </a>
+        )}
+      </div>
     </>
   )
 }

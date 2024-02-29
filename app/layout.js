@@ -1,16 +1,15 @@
 import {RealViewport} from 'components/real-viewport'
 import {DeviceDetectionProvider} from 'context/device-detection.context'
-
 import FontdueProvider from 'fontdue-js/FontdueProvider'
-import StoreModal from 'fontdue-js/StoreModal'
 import parse from 'html-react-parser'
 import 'fontdue-js/fontdue.css'
 import 'styles/main.scss'
 import {fetchGraphql} from 'libs/graphql'
 import PreloadWebfonts from 'components/PreloadWebfonts'
-import {Layout} from 'layouts/default'
 import Nav from 'components/Nav'
 import Footer from 'components/Footer'
+import {Layout} from 'layouts/default'
+import {StoreModalContainer} from 'components/StoreModalContainer'
 
 function styleFamilyName(style) {
   if (!style) return null
@@ -36,13 +35,6 @@ export default async function RootLayout({children}) {
   const {viewer} = await getData()
   const pages = viewer.pages?.edges?.map(edge => edge.node)
   // const moreThanOneCollection = (viewer.fontCollections?.edges?.length ?? 0) > 1
-
-  // gsap.to('.title', {
-  //   scrollTrigger: {
-  //     trigger: '.title',
-  //     start:
-  //   }
-  // })
   return (
     <html lang="en">
       <head>
@@ -69,16 +61,15 @@ export default async function RootLayout({children}) {
             typeTester: {selectable: true, variableAxesPosition: 'auto'},
           }}
         >
-          <Nav pages={pages} />
           <Layout>
+            <Nav pages={pages} />
             <RealViewport />
             <DeviceDetectionProvider>
               {children}
-              <StoreModal />
+              <StoreModalContainer />
             </DeviceDetectionProvider>
+            <Footer viewer={viewer} />
           </Layout>
-          <Footer viewer={viewer} />
-          <StoreModal />
         </FontdueProvider>
       </body>
     </html>

@@ -1,10 +1,14 @@
 .collection-info {
-  margin-top: 1em;
+  display: flex;
+  flex-direction: column;
+  margin-top: 2em;
+  gap: desktop-vw(64px);
 
   &__images {
     margin-bottom: 1.5em;
 
-    img, video {
+    img,
+    video {
       display: block;
       width: 100%;
       height: auto;
@@ -12,7 +16,13 @@
   }
 
   &__name {
-    margin-bottom: 1.5em;
+    // margin-bottom: 1.5em;
+
+    font-size: calc(var(--optical-adjustment, 1) * desktop-vw(120px));
+    line-height: 0.9;
+    padding: desktop-vw(40px) 0;
+    background: $gray;
+    text-align: center;
   }
 
   &__single-style-name {
@@ -25,9 +35,29 @@
     padding: 3rem 0;
   }
 
-  &__buy {
+  &__buy,
+  &__buybottom {
     margin-bottom: 4.5em;
     display: flex;
+
+    & > .buy-button {
+      background: #00a21a;
+      color: white;
+      border: none;
+      border-radius: 20px;
+      font-size: desktop-vw(24px);
+      line-height: 0.85;
+      padding: desktop-vw(8px) desktop-vw(16px);
+      vertical-align: top;
+      text-transform: uppercase;
+      text-align: center;
+    }
+  }
+
+  &__buybottom {
+    margin-top: 4.5em;
+    margin-bottom: 0;
+    justify-content: center;
   }
 
   &__minisite-link {
@@ -51,7 +81,7 @@
     justify-content: center;
   }
 
-  &[data-collection-type="superfamily"] &__styles {
+  &[data-collection-type='superfamily'] &__styles {
     display: grid;
     grid-template-columns: 1fr;
     grid-gap: 40px;
