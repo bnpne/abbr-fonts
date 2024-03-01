@@ -5,6 +5,7 @@
   &-collection {
     text-align: center;
     padding: desktop-vw(40px) 0;
+    position: relative;
     // line-height: 1;
 
     &:nth-child(odd) {
@@ -20,11 +21,13 @@
     }
 
     &-new {
-      vertical-align: top;
-      display: inline-block;
-      position: relative;
-      width: 0;
-      margin-left: 0.25em;
+      position: absolute;
+      text-transform: uppercase;
+      background: #00a313;
+      color: white;
+      padding: desktop-vw(4px) desktop-vw(8px);
+      border-radius: 20px;
+      margin-left: 0;
 
       @include minWidth(desktop) {
         top: calc(32px * var(--optical-adjustment, 1));

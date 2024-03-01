@@ -23,6 +23,8 @@ export default async function Home() {
         if (!node.slug) return
         const isBespoke = node.tags?.includes('Bespoke')
 
+        console.log(node)
+
         if (isBespoke === false) {
           return (
             <h2 key={node.id} className="home-collection">
@@ -42,9 +44,7 @@ export default async function Home() {
                   {node.name}
                 </Link>
               </FontStyle>
-              {node.isNew && (
-                <span className="home-collection-new">&nbsp;New</span>
-              )}
+              {node.isNew && <span className="home-collection-new">New</span>}
             </h2>
           )
         }
