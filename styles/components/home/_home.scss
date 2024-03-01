@@ -1,5 +1,6 @@
 .home {
-  padding: desktop-vw(128px) 0;
+  padding-top: desktop-vw(128px) 0;
+  flex-grow: 1;
 
   &-collection {
     text-align: center;

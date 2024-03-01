@@ -155,10 +155,15 @@ function FontDetail({collection}) {
           </FontStyle>
         ) : (
           <div className="collection-info__name">
-            <h1>
-              {collection.name}
-              {collection.collectionType === 'superfamily' && ' Collection'}
-            </h1>
+            <FontStyle
+              familyName={collection.featureStyle?.cssFamily}
+              styleName={collection.featureStyle?.name}
+            >
+              <h1>
+                {collection.name}
+                {collection.collectionType === 'superfamily' && ' Collection'}
+              </h1>
+            </FontStyle>
           </div>
         )}
 

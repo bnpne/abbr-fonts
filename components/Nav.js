@@ -35,7 +35,7 @@ export default function Nav({pages}) {
 
   return (
     <nav ref={nav} className="nav" data-border="true">
-      {path === '/' && (
+      {(path === '/' || path === '/bespoke') && (
         <div className="nav-text">
           <div className="nav-text-title">ABBREVIATED FOUNDRY</div>
         </div>
@@ -43,6 +43,9 @@ export default function Nav({pages}) {
       <div className="nav-links">
         <ActiveLink href="/" className="nav-link">
           Typefaces
+        </ActiveLink>
+        <ActiveLink href="/bespoke" className="nav-link">
+          Bespoke
         </ActiveLink>
         {pages?.map(node => (
           <ActiveLink

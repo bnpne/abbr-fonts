@@ -1,6 +1,7 @@
 fragment FontDetailCollection on FontCollection {
   id
   name
+  tags
   collectionType
   isVariableFont
   cssUrl
@@ -89,6 +90,7 @@ query Index {
           isNew
           opticalAdjustment
           slug { name }
+          tags
           ...FontCollectionCSS
         }
       }

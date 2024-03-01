@@ -23,7 +23,7 @@ export default async function Home() {
         if (!node.slug) return
         const isBespoke = node.tags?.includes('Bespoke')
 
-        if (isBespoke === false) {
+        if (isBespoke === true) {
           return (
             <h2 key={node.id} className="home-collection">
               <PreloadWebfonts style={node.featureStyle} />

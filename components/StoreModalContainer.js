@@ -14,6 +14,10 @@ export function StoreModalContainer() {
       if (t) {
         if (t.children.length > 0) {
           if (n.isNavOpened === false) {
+            n.setIsNavOpened(true)
+          }
+        } else {
+          if (n.isNavOpened === true) {
             n.setIsNavOpened(false)
           }
         }

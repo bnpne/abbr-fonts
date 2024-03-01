@@ -8,5 +8,49 @@
     &__container {
       border: 1px black solid;
     }
+
+    &__title {
+      text-transform: uppercase;
+    }
+  }
+
+  &__index-item {
+    &__name,
+    &__label {
+      text-transform: uppercase;
+    }
+    &__button {
+      margin-bottom: 0;
+      border: black 1px solid;
+      padding: 0;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: stretch;
+
+      &:hover {
+        .store-modal__index-item__buy {
+          background: var(--link_hover_color);
+          color: white;
+        }
+      }
+    }
+
+    &__text-container {
+      padding: desktop-vw(36px);
+    }
+
+    &__buy {
+      padding: desktop-vw(40px) desktop-vw(60px);
+      margin-left: 0;
+      height: auto;
+      border-left: 1px black solid;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      font-size: desktop-vw(24px);
+      text-transform: uppercase;
+    }
   }
 }
