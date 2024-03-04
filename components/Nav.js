@@ -7,6 +7,7 @@ import {useEffect, useRef} from 'react'
 import gsap from 'gsap'
 import {useLenis} from '@studio-freight/react-lenis'
 import {useStore} from 'libs/store'
+import {useGSAP} from '@gsap/react'
 
 export default function Nav({pages}) {
   const path = usePathname()
@@ -14,7 +15,7 @@ export default function Nav({pages}) {
   const lenis = useLenis()
   const n = useStore()
 
-  useEffect(() => {
+  useGSAP(() => {
     path === '/' &&
       gsap.to('.nav-text', {
         height: 0,
@@ -25,7 +26,7 @@ export default function Nav({pages}) {
           scrub: true,
         },
       })
-  }, [path])
+  })
 
   useEffect(() => {
     if (lenis) {

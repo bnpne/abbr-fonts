@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "@cerner/duplicate-package-checker-webpack-plugin": "^2.6.0",
+    "@gsap/react": "^2.1.0",
     "@studio-freight/compono": "^0.0.51",
     "@studio-freight/hamo": "0.6.28",
     "@studio-freight/react-lenis": "^0.0.43",

@@ -1,6 +1,6 @@
 'use client'
 
-import React from 'react'
+import React, {useRef} from 'react'
 import useFontStyle from 'fontdue-js/useFontStyle'
 export default function FontStyle({
   familyName,
@@ -9,6 +9,8 @@ export default function FontStyle({
   children,
   ...rest
 }) {
+  const anima = useRef()
+
   const {style} = useFontStyle({
     fontFamily: `${familyName} ${styleName}`,
     fontWeight: '400',
@@ -16,7 +18,7 @@ export default function FontStyle({
   })
 
   return (
-    <span style={{...style, ...styleProp}} {...rest}>
+    <span ref={anima} style={{...style, ...styleProp}} {...rest}>
       {children}
     </span>
   )

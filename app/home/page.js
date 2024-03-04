@@ -4,6 +4,7 @@ import FontStyle from '../../components/FontStyle'
 import {notEmpty} from 'libs/graphql/utils'
 import PreloadWebfonts from '../../components/PreloadWebfonts'
 import FontDetail from '../../components/FontDetail'
+import TextAnima from 'components/TextAnima'
 
 export default async function Home() {
   const data = await fetchGraphql('Index.graphql')
@@ -23,8 +24,6 @@ export default async function Home() {
         if (!node.slug) return
         const isBespoke = node.tags?.includes('Bespoke')
 
-        console.log(node)
-
         if (isBespoke === false) {
           return (
             <h2 key={node.id} className="home-collection">
@@ -36,12 +35,12 @@ export default async function Home() {
               >
                 <Link
                   href={`/fonts/${node.slug.name}`}
-                  className="home-collection-link"
+                  className="home-collection-link anima"
                   style={{
                     '--optical-adjustment': node.opticalAdjustment,
                   }}
                 >
-                  {node.name}
+                  <TextAnima>{node.name}</TextAnima>
                 </Link>
               </FontStyle>
               {node.isNew && <span className="home-collection-new">New</span>}

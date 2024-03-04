@@ -16,6 +16,9 @@ dependencies:
   '@cerner/duplicate-package-checker-webpack-plugin':
     specifier: ^2.6.0
     version: 2.6.0(webpack@5.90.3)
+  '@gsap/react':
+    specifier: ^2.1.0
+    version: 2.1.0
   '@studio-freight/compono':
     specifier: ^0.0.51
     version: 0.0.51(embla-carousel@7.1.0)(next@14.1.0)(react-dom@18.2.0)(react@18.2.0)
@@ -2233,6 +2236,13 @@ packages:
     dependencies:
       graphql: 16.8.1
     dev: true
+
+  /@gsap/react@2.1.0:
+    resolution: {integrity: sha512-pwdFXvOM5IsRZXpWTKkQoEjb3/iUjDCU1BCJDlE6pHgVjG+7Ep/7+sszUgqVZ2Jc0mR8gnhtDWyx5cQAT4kwQw==}
+    dependencies:
+      gsap: 3.12.5
+      react: 18.2.0
+    dev: false
 
   /@humanwhocodes/config-array@0.11.14:
     resolution: {integrity: sha512-3T8LkOmg45BV5FICb15QQMsyUSWrQ8AygVfC7ZG32zOalnqrilm018ZVCw0eapXux8FtA33q8PSRSstjee3jSg==}

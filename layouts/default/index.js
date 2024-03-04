@@ -10,9 +10,9 @@ if (typeof window !== 'undefined') {
   gsap.defaults({ease: 'none'})
   gsap.registerPlugin(ScrollTrigger)
   ScrollTrigger.clearScrollMemory(window.history.scrollRestoration)
-  ScrollTrigger.defaults({
-    markers: process.env.NODE_ENV === 'development' ? true : false,
-  })
+  // ScrollTrigger.defaults({
+  //   markers: process.env.NODE_ENV === 'development' ? true : false,
+  // })
 
   // merge rafs
   gsap.ticker.lagSmoothing(0)
