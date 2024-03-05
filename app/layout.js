@@ -10,6 +10,7 @@ import Nav from 'components/Nav'
 import Footer from 'components/Footer'
 import {Layout} from 'layouts/default'
 import {StoreModalContainer} from 'components/StoreModalContainer'
+import Preloader from 'components/Preloader'
 
 function styleFamilyName(style) {
   if (!style) return null
@@ -56,6 +57,7 @@ export default async function RootLayout({children}) {
           }}
         />
 
+        <Preloader />
         <FontdueProvider
           config={{
             typeTester: {selectable: true, variableAxesPosition: 'auto'},

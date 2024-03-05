@@ -15,18 +15,23 @@ export default function Nav({pages}) {
   const lenis = useLenis()
   const n = useStore()
 
-  useGSAP(() => {
-    path === '/' &&
-      gsap.to('.nav-text', {
-        height: 0,
-        scrollTrigger: {
-          trigger: '.nav',
-          start: 'top top',
-          end: 'center top',
-          scrub: true,
-        },
-      })
-  })
+  useGSAP(
+    () => {
+      path === '/' &&
+        gsap.to('.nav-text', {
+          height: 0,
+          duration: 0.6,
+          ease: 'expo.out',
+          yoyoEase: true,
+          scrollTrigger: {
+            trigger: '.home',
+            start: 'top top-=20px',
+            toggleActions: 'play pause reverse reverse',
+          },
+        })
+    },
+    {scope: nav},
+  )
 
   useEffect(() => {
     if (lenis) {

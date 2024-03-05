@@ -20,7 +20,7 @@ export default function TextAnima({children}) {
           duration: 0.6,
           scrollTrigger: {
             trigger: container.current,
-            start: 'top 90%',
+            start: 'top 95%',
           },
         },
       )
