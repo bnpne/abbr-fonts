@@ -2,6 +2,10 @@
   padding-top: desktop-vw(128px) 0;
   flex-grow: 1;
 
+  @include maxWidth(mobile) {
+    padding-top: desktop-vw(300px) 0;
+  }
+
   &-collection {
     text-align: center;
     padding: desktop-vw(40px) 0;
@@ -20,7 +24,13 @@
       }
     }
 
-    &-new {
+    &-new,
+    &-styles {
+      &-wrapper {
+        position: absolute;
+      }
+
+      font-size: desktop-vw(16px);
       position: absolute;
       text-transform: uppercase;
       background: #00a313;
@@ -28,9 +38,57 @@
       padding: desktop-vw(4px) desktop-vw(8px);
       border-radius: 20px;
       margin-left: 0;
+      display: inline-block;
 
       @include minWidth(desktop) {
         top: calc(32px * var(--optical-adjustment, 1));
+      }
+    }
+
+    &-styles {
+      white-space: pre;
+      background: #508cde;
+    }
+
+    &:nth-child(odd) {
+      .home-collection-new-wrapper,
+      .home-collection-styles-wrapper {
+        left: 8%;
+      }
+
+      .home-collection-styles-wrapper {
+        top: 35%;
+      }
+
+      .home-collection-new {
+        transform: translateX(-50%);
+        rotate: -18deg;
+      }
+
+      .home-collection-styles {
+        transform: translateX(-50%);
+        rotate: -8deg;
+      }
+    }
+
+    &:nth-child(even) {
+      .home-collection-new-wrapper,
+      .home-collection-styles-wrapper {
+        right: 8%;
+      }
+
+      .home-collection-styles-wrapper {
+        top: 35%;
+      }
+
+      .home-collection-new {
+        transform: translateX(-50%);
+        rotate: 18deg;
+      }
+
+      .home-collection-styles {
+        transform: translateX(-50%);
+        rotate: 8deg;
       }
     }
 
@@ -38,7 +96,7 @@
       display: inline-block;
       line-height: 1;
       @include resetLink();
-      color: $black;
+      color: inherit;
       &:hover {
         color: var(--link_hover_color);
       }

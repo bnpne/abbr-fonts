@@ -4,6 +4,11 @@
   box-sizing: border-box;
 }
 
+:root {
+  --main-text-color: #000000;
+  --main-background-color: #ffffff;
+}
+
 body {
   background-color: var(--primary_background_color);
   color: var(--primary_text_color);
@@ -61,5 +66,17 @@ img {
     width: 1em;
     height: 1em;
     fill: currentColor;
+  }
+}
+
+.theme {
+  &-light {
+    background: #fff;
+    color: #000;
+  }
+
+  &-dark {
+    background: #000;
+    color: #fff;
   }
 }

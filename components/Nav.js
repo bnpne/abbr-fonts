@@ -14,6 +14,7 @@ export default function Nav({pages}) {
   const nav = useRef()
   const lenis = useLenis()
   const n = useStore()
+  // const t = useTheme()
 
   useGSAP(
     () => {
@@ -30,7 +31,7 @@ export default function Nav({pages}) {
           },
         })
     },
-    {scope: nav},
+    {scope: nav, dependencies: [path]},
   )
 
   useEffect(() => {
@@ -38,6 +39,12 @@ export default function Nav({pages}) {
       n.isNavOpened === true ? lenis.stop() : lenis.start()
     }
   }, [n.isNavOpened, lenis])
+
+  // const handleTheme = () => {
+  //   t.currentTheme === 'light'
+  //     ? t.setCurrentTheme('dark')
+  //     : t.setCurrentTheme('light')
+  // }
 
   return (
     <nav ref={nav} className="nav" data-border="true">
@@ -68,6 +75,11 @@ export default function Nav({pages}) {
         <div className="nav-link" onClick={() => n.setIsNavOpened(true)}>
           <CartButton label="Cart" buttonStyle="inline" />
         </div>
+        {/*
+        <div className="nav-link" onClick={handleTheme}>
+          Theme
+        </div>
+        */}
       </div>
     </nav>
   )

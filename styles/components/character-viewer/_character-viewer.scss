@@ -1,0 +1,9 @@
+.character-viewer {
+  &__block {
+    &__characters {
+      & > div {
+        cursor: pointer;
+      }
+    }
+  }
+}

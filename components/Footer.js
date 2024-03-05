@@ -5,55 +5,60 @@ import FontdueHTML from './FontdueHTML'
 import {useRef} from 'react'
 import {useGSAP} from '@gsap/react'
 import gsap from 'gsap'
+import {usePathname} from 'next/navigation'
 
 export default function Footer({viewer}) {
+  const path = usePathname()
   const footer = useRef()
   const grid = useRef()
   const pill = useRef()
   const text = useRef()
 
-  useGSAP(() => {
-    const st = gsap.utils.toArray('[data-text-inner]', text.current)
-    const ar = Array.prototype.slice.call(grid.current.children)
-    gsap
-      .timeline({
-        scrollTrigger: {
-          trigger: footer.current,
-          start: 'top 90%',
-        },
-      })
-      .fromTo(
-        ar,
-        {
-          y: '100%',
-        },
-        {
-          y: '0%',
-          stagger: 0.1,
-          ease: 'expo.out',
-          duration: 1,
-        },
-      )
-      .from(
-        st,
-        {
-          y: '100%',
-          stagger: 0.05,
-          ease: 'expo.out',
-          duration: 0.6,
-        },
-        '<40%',
-      )
-      .from(
-        pill.current,
-        {
-          bottom: -50,
-          ease: 'expo.out',
-          duration: 0.5,
-        },
-        '<50%',
-      )
-  }, {})
+  useGSAP(
+    () => {
+      const st = gsap.utils.toArray('[data-text-inner]', text.current)
+      const ar = Array.prototype.slice.call(grid.current.children)
+      gsap
+        .timeline({
+          scrollTrigger: {
+            trigger: footer.current,
+            start: 'top 90%',
+          },
+        })
+        .fromTo(
+          ar,
+          {
+            y: '100%',
+          },
+          {
+            y: '0%',
+            stagger: 0.1,
+            ease: 'expo.out',
+            duration: 1,
+          },
+        )
+        .from(
+          st,
+          {
+            y: '100%',
+            stagger: 0.05,
+            ease: 'expo.out',
+            duration: 0.6,
+          },
+          '<40%',
+        )
+        .from(
+          pill.current,
+          {
+            bottom: -50,
+            ease: 'expo.out',
+            duration: 0.5,
+          },
+          '<50%',
+        )
+    },
+    {dependencies: [path]},
+  )
 
   return (
     <footer ref={footer} className="footer">

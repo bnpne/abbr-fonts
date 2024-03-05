@@ -5,6 +5,7 @@ import {notEmpty} from 'libs/graphql/utils'
 import PreloadWebfonts from '../../components/PreloadWebfonts'
 import FontDetail from '../../components/FontDetail'
 import TextAnima from 'components/TextAnima'
+import PillAnima from 'components/PillAnima'
 
 export default async function Home() {
   const data = await fetchGraphql('Index.graphql')
@@ -23,7 +24,7 @@ export default async function Home() {
       {collections?.map(node => {
         if (!node.slug) return
         const isBespoke = node.tags?.includes('Bespoke')
-
+        const styleCount = node.fontStyles.length
         if (isBespoke === false) {
           return (
             <h2 key={node.id} className="home-collection">
@@ -43,7 +44,14 @@ export default async function Home() {
                   <TextAnima>{node.name}</TextAnima>
                 </Link>
               </FontStyle>
-              {node.isNew && <span className="home-collection-new">New</span>}
+              <PillAnima className={'home-collection-new-wrapper'}>
+                {node.isNew && <span className="home-collection-new">New</span>}
+              </PillAnima>
+              <PillAnima className={'home-collection-styles-wrapper'}>
+                <span className="home-collection-styles">
+                  {`${styleCount} ${styleCount > 1 ? 'STYLES' : 'STYLE'}`}
+                </span>
+              </PillAnima>
             </h2>
           )
         }

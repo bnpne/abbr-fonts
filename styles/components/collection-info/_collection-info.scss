@@ -23,6 +23,10 @@
     padding: desktop-vw(40px) 0;
     background: $gray;
     text-align: center;
+
+    & > span h1 {
+      line-height: 1;
+    }
   }
 
   &__single-style-name {

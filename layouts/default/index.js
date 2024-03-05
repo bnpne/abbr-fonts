@@ -5,6 +5,7 @@ import Tempus from '@studio-freight/tempus'
 import cn from 'clsx'
 import {gsap} from 'gsap'
 import {ScrollTrigger} from 'gsap/dist/ScrollTrigger'
+import {useTheme} from 'libs/store'
 
 if (typeof window !== 'undefined') {
   gsap.defaults({ease: 'none'})
@@ -26,10 +27,11 @@ if (typeof window !== 'undefined') {
   window.history.scrollRestoration = 'manual'
 }
 
-export function Layout({children, theme = 'light', className}) {
+export function Layout({children, className}) {
+  const t = useTheme()
   return (
     <Lenis root>
-      <div className={cn(`theme-${theme}`, className)}>
+      <div className={cn(`theme-${t.currentTheme}`, className)}>
         <main>{children}</main>
       </div>
     </Lenis>

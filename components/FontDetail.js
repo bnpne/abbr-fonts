@@ -8,6 +8,7 @@ import FontStyle from './FontStyle'
 import Carousel from './Carousel'
 import FontdueHTML from './FontdueHTML'
 import {notEmpty} from 'libs/graphql/utils'
+import TextAnima from './TextAnima'
 
 function instanceCSS(instance) {
   const settings = instance.coordinates.map(
@@ -132,7 +133,7 @@ function CollectionStyles({collection, isSubfamily}) {
                   styleName={style.name}
                   className="collection-styles__style"
                 >
-                  {style.name}{' '}
+                  {style.name}
                 </FontStyle>
               ))}
             </span>
@@ -150,7 +151,7 @@ function FontDetail({collection}) {
             styleName={collection.featureStyle?.name}
           >
             <h1 className="collection-info__single-style-name">
-              {collection.name}
+              <TextAnima>{collection.name}</TextAnima>
             </h1>
           </FontStyle>
         ) : (
@@ -160,8 +161,10 @@ function FontDetail({collection}) {
               styleName={collection.featureStyle?.name}
             >
               <h1>
-                {collection.name}
-                {collection.collectionType === 'superfamily' && ' Collection'}
+                <TextAnima>
+                  {collection.name}
+                  {collection.collectionType === 'superfamily' && ' Collection'}
+                </TextAnima>
               </h1>
             </FontStyle>
           </div>
@@ -169,23 +172,25 @@ function FontDetail({collection}) {
 
         {collection.images?.length ? (
           <div className="collection-info__images">
-            <Carousel>
-              {collection.images.map((image, i) => (
-                <div key={i} className="collection-info__image">
-                  {image.meta && image.meta.mimeType === 'video/mp4' ? (
-                    <video src={image.url} playsInline muted autoPlay loop />
-                  ) : (
-                    <Image
-                      src={image.url}
-                      width={image.meta?.width ?? 1000}
-                      height={image.meta?.height ?? 768}
-                      alt={image.description ?? ''}
-                      priority={i === 0}
-                    />
-                  )}
-                </div>
-              ))}
-            </Carousel>
+            <TextAnima display={'block'}>
+              <Carousel>
+                {collection.images.map((image, i) => (
+                  <div key={i} className="collection-info__image">
+                    {image.meta && image.meta.mimeType === 'video/mp4' ? (
+                      <video src={image.url} playsInline muted autoPlay loop />
+                    ) : (
+                      <Image
+                        src={image.url}
+                        width={image.meta?.width ?? 1000}
+                        height={image.meta?.height ?? 768}
+                        alt={image.description ?? ''}
+                        priority={i === 0}
+                      />
+                    )}
+                  </div>
+                ))}
+              </Carousel>
+            </TextAnima>
           </div>
         ) : null}
 

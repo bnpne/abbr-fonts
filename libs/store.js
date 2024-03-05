@@ -8,3 +8,14 @@ export const useStore = createWithEqualityFn(
   }),
   shallow,
 )
+
+export const useTheme = createWithEqualityFn(
+  set => ({
+    currentTheme: 'light',
+    setCurrentTheme: value =>
+      set({
+        currentTheme: value,
+      }),
+  }),
+  shallow,
+)
