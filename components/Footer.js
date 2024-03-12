@@ -16,49 +16,51 @@ export default function Footer({viewer}) {
 
   useGSAP(
     () => {
-      const tl = gsap.timeline({
-        scrollTrigger: {
-          trigger: footer.current,
-          start: 'top 90%',
-        },
-      })
-      if (path !== '/info') {
-        const st = gsap.utils.toArray('[data-text-inner]', text.current)
-        const ar = Array.prototype.slice.call(grid.current.children)
-        tl.fromTo(
-          ar,
-          {
-            y: '100%',
+      if (path === '/' || path === '/info' || path === '/bespoke') {
+        const tl = gsap.timeline({
+          scrollTrigger: {
+            trigger: footer.current,
+            start: 'top bottom',
           },
+        })
+        if (path !== '/info') {
+          const st = gsap.utils.toArray('[data-text-inner]', text.current)
+          const ar = Array.prototype.slice.call(grid.current.children)
+          tl.fromTo(
+            ar,
+            {
+              y: '100%',
+            },
+            {
+              y: '0%',
+              stagger: 0.1,
+              ease: 'expo.out',
+              duration: 1,
+            },
+          ).from(
+            st,
+            {
+              y: '100%',
+              opacity: 0,
+              stagger: 0.05,
+              ease: 'expo.out',
+              duration: 0.6,
+            },
+            '<40%',
+          )
+        }
+        tl.from(
+          pill.current,
           {
-            y: '0%',
-            stagger: 0.1,
+            bottom: -50,
             ease: 'expo.out',
-            duration: 1,
+            duration: 0.5,
           },
-        ).from(
-          st,
-          {
-            y: '100%',
-            opacity: 0,
-            stagger: 0.05,
-            ease: 'expo.out',
-            duration: 0.6,
-          },
-          '<40%',
+          '<50%',
         )
       }
-      tl.from(
-        pill.current,
-        {
-          bottom: -50,
-          ease: 'expo.out',
-          duration: 0.5,
-        },
-        '<50%',
-      )
     },
-    {dependencies: [path]},
+    {dependencies: [path], scope: footer},
   )
 
   return (

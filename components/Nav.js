@@ -18,7 +18,7 @@ export default function Nav({pages}) {
 
   useGSAP(
     () => {
-      path === '/' &&
+      if (path === '/' || path === '/bespoke') {
         gsap.to('.nav-text', {
           height: 0,
           duration: 0.6,
@@ -30,6 +30,7 @@ export default function Nav({pages}) {
             toggleActions: 'play pause reverse reverse',
           },
         })
+      }
     },
     {scope: nav, dependencies: [path]},
   )

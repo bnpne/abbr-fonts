@@ -15,8 +15,9 @@
   }
 
   &__group {
+    display: flex;
+    gap: desktop-vw(16px);
     @include fontSize(42px);
-    display: block;
 
     [data-collection-type='superfamily'] & {
       @include fontSize(34px);

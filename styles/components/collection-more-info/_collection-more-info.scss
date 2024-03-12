@@ -16,10 +16,11 @@
     margin-bottom: 1.5em;
   }
 
-
   &__description {
     max-width: 40em;
     margin-bottom: 1.5em;
+    font-size: desktop-vw(24px);
+    line-height: desktop-vw(26.4px);
 
     button {
       @include resetButton();
