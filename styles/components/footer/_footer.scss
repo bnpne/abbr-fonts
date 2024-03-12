@@ -15,18 +15,16 @@
   }
 
   &-text {
-    font-size: desktop-vw(28px);
-    line-height: desktop-vw(36.4px);
-    letter-spacing: 0.1em;
+    font-size: desktop-vw(24px);
+    line-height: desktop-vw(26.4px);
     color: $black;
     position: relative;
     z-index: 4;
-    text-transform: uppercase;
     grid-column: 2 / 4;
 
     &-outer {
       display: inline-block;
-      overflow: hidden;
+      // overflow: hidden;
       vertical-align: top;
     }
     &-inner {
@@ -90,5 +88,11 @@
 
   &-link {
     color: $black;
+  }
+
+  &-info-container {
+    height: 100%;
+    position: relative;
+    min-height: desktop-vw(100px);
   }
 }

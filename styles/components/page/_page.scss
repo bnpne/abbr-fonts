@@ -1,21 +1,18 @@
 .page {
-  margin-top: desktop-vw(100px);
-
   flex-grow: 1;
   display: flex;
   flex-direction: column;
+  justify-content: center;
   align-items: center;
 
   p {
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    font-size: desktop-vw(28px);
-    line-height: desktop-vw(36.4px);
+    font-size: desktop-vw(24px);
+    line-height: desktop-vw(26.4px);
     max-width: 100%;
   }
 
   &-body {
-    max-width: desktop-vw(900px);
+    max-width: desktop-vw(685px);
   }
   // @include minWidth(desktop) {
   //   display: grid;
