@@ -6,6 +6,7 @@ import cn from 'clsx'
 import {gsap} from 'gsap'
 import {ScrollTrigger} from 'gsap/dist/ScrollTrigger'
 import {useTheme} from 'libs/store'
+import Script from 'next/script'
 
 if (typeof window !== 'undefined') {
   gsap.defaults({ease: 'none'})
@@ -31,6 +32,11 @@ export function Layout({children, className}) {
   const t = useTheme()
   return (
     <Lenis root>
+      <Script
+        async
+        type="text/javascript"
+        src="https://static.klaviyo.com/onsite/js/klaviyo.js?company_id=UFNDNs"
+      />
       <div className={cn(`theme-${t.currentTheme}`, className)}>
         <main>{children}</main>
       </div>

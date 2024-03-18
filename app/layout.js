@@ -10,7 +10,6 @@ import Nav from 'components/Nav'
 import Footer from 'components/Footer'
 import {Layout} from 'layouts/default'
 import {StoreModalContainer} from 'components/StoreModalContainer'
-import Script from 'next/script'
 
 function styleFamilyName(style) {
   if (!style) return null
@@ -45,11 +44,6 @@ export default async function RootLayout({children}) {
           rel="stylesheet"
         />
       </head>
-      <Script
-        async
-        type="text/javascript"
-        src="https://static.klaviyo.com/onsite/js/klaviyo.js?company_id=UFNDNs"
-      />
       <body>
         {parse(viewer.settings?.htmlHead ?? '')}
         <PreloadWebfonts style={viewer.settings?.uiFontStyle} />
