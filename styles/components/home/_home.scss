@@ -94,7 +94,7 @@
 
     &-link {
       display: inline-block;
-      line-height: 1;
+      line-height: 1.2;
       @include resetLink();
       color: inherit;
       &:hover {

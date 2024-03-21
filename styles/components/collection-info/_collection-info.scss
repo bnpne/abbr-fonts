@@ -25,7 +25,7 @@
     text-align: center;
 
     & > span h1 {
-      line-height: 1;
+      line-height: 1.2;
     }
   }
 
@@ -36,6 +36,7 @@
   }
 
   &__styles {
+    overflow: hidden;
     padding: 3rem 0;
   }
 
@@ -52,9 +53,15 @@
       font-size: desktop-vw(24px);
       line-height: 0.85;
       padding: desktop-vw(8px) desktop-vw(16px);
+      padding-bottom: desktop-vw(11px);
       vertical-align: top;
       text-transform: uppercase;
       text-align: center;
+
+      @media screen and (max-width: 430px) {
+        font-size: mobile-vw(24px);
+        padding: mobile-vw(8px) mobile-vw(16px);
+      }
     }
   }
 

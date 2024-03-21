@@ -26,6 +26,11 @@
       @include resetButton();
       text-decoration: underline;
     }
+    @media screen and (max-width: 430px) {
+      font-size: mobile-vw(24px);
+      line-height: mobile-vw(26.4px);
+      max-width: none;
+    }
   }
 
   &__specimens {

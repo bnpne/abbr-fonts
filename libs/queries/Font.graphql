@@ -4,6 +4,7 @@ fragment FontDetailCollection on FontCollection {
   collectionType
   isVariableFont
   cssUrl
+  tags
   sku { id }
   bundles {
     sku { id }

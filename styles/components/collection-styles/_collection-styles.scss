@@ -5,6 +5,10 @@
   justify-content: center;
   gap: desktop-vw(16px);
 
+  @media screen and (max-width: 430px) {
+    gap: desktop-vw(52px);
+  }
+
   & + & {
     margin-top: 1.5em;
   }
@@ -22,5 +26,13 @@
     [data-collection-type='superfamily'] & {
       @include fontSize(34px);
     }
+    @media screen and (max-width: 430px) {
+      @include fontSize(22px);
+    }
   }
+}
+
+.cs {
+  display: flex;
+  gap: desktop-vw(16px);
 }

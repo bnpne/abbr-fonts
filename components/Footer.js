@@ -6,6 +6,7 @@ import {useRef} from 'react'
 import {useGSAP} from '@gsap/react'
 import gsap from 'gsap'
 import {usePathname} from 'next/navigation'
+import {useDeviceDetection} from 'context/device-detection.context'
 
 export default function Footer({viewer}) {
   const path = usePathname()
@@ -13,31 +14,26 @@ export default function Footer({viewer}) {
   const grid = useRef()
   const pill = useRef()
   const text = useRef()
+  const {isMobile} = useDeviceDetection()
 
   useGSAP(
     () => {
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: footer.current,
+          start: 'top bottom',
+        },
+      })
       if (path === '/' || path === '/info' || path === '/bespoke') {
-        const tl = gsap.timeline({
-          scrollTrigger: {
-            trigger: footer.current,
-            start: 'top bottom',
-          },
-        })
         if (path !== '/info') {
           const st = gsap.utils.toArray('[data-text-inner]', text.current)
           const ar = Array.prototype.slice.call(grid.current.children)
-          tl.fromTo(
-            ar,
-            {
-              y: '100%',
-            },
-            {
-              y: '0%',
-              stagger: 0.1,
-              ease: 'expo.out',
-              duration: 1,
-            },
-          ).from(
+          tl.from(ar, {
+            y: '100%',
+            stagger: 0.1,
+            ease: 'expo.out',
+            duration: 1,
+          }).from(
             st,
             {
               y: '100%',
@@ -58,6 +54,20 @@ export default function Footer({viewer}) {
           },
           '<50%',
         )
+      } else {
+        const st = gsap.utils.toArray('[data-text-inner]', text.current)
+        const ar = Array.prototype.slice.call(grid.current.children)
+
+        gsap.set(ar, {
+          y: '0%',
+        })
+        gsap.set(st, {
+          y: '0%',
+          opacity: 1,
+        })
+        gsap.set(pill.current, {
+          bottom: 30,
+        })
       }
     },
     {dependencies: [path], scope: footer},
@@ -100,15 +110,21 @@ export default function Footer({viewer}) {
               />
               <Link
                 className="footer-link"
+                target="_blank"
                 href="https://www.instagram.com/abbr.projects/"
               >
                 Instagram
               </Link>
-              <Link className="footer-link" href="mailto:simon@abranowicz.com">
+              <Link
+                className="footer-link"
+                target="_blank"
+                href="mailto:simon@abranowicz.com"
+              >
                 Contact
               </Link>
               <Link
                 className="footer-link"
+                target="_blank"
                 href="https://www.abbrprojects.com/"
               >
                 ABBR. Projects

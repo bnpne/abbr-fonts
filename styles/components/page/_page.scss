@@ -9,10 +9,17 @@
     font-size: desktop-vw(24px);
     line-height: desktop-vw(26.4px);
     max-width: 100%;
+    @media screen and (max-width: 430px) {
+      font-size: mobile-vw(24px);
+      line-height: mobile-vw(26.4px);
+    }
   }
 
   &-body {
     max-width: desktop-vw(685px);
+    @media screen and (max-width: 430px) {
+      max-width: none;
+    }
   }
   // @include minWidth(desktop) {
   //   display: grid;

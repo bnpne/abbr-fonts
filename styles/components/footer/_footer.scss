@@ -12,6 +12,10 @@
     position: relative;
     padding: desktop-vw(20px) 0;
     margin-top: desktop-vw(100px);
+
+    @media screen and (max-width: 430px) {
+      padding-bottom: mobile-vw(150px);
+    }
   }
 
   &-text {
@@ -21,6 +25,12 @@
     position: relative;
     z-index: 4;
     grid-column: 2 / 4;
+
+    @media screen and (max-width: 430px) {
+      font-size: mobile-vw(12px);
+      line-height: mobile-vw(13px);
+      grid-column: 1 / 5;
+    }
 
     &-outer {
       display: inline-block;
@@ -62,6 +72,10 @@
     bottom: desktop-vw(20px);
     left: 50%;
     transform: translateX(-50%);
+
+    @media screen and (max-width: 430px) {
+      bottom: mobile-vw(50px);
+    }
   }
 
   &-links {
@@ -80,6 +94,14 @@
     justify-content: space-between;
     background: $gray;
     box-shadow: 0 0 4px #00000040;
+
+    @media screen and (max-width: 430px) {
+      flex-wrap: wrap;
+      font-size: mobile-vw(13px);
+      padding: mobile-vw(5px) mobile-vw(24px);
+      max-height: none;
+      gap: mobile-vw(16px);
+    }
 
     a {
       text-decoration: none;
