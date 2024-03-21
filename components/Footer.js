@@ -6,7 +6,6 @@ import {useRef} from 'react'
 import {useGSAP} from '@gsap/react'
 import gsap from 'gsap'
 import {usePathname} from 'next/navigation'
-import {useDeviceDetection} from 'context/device-detection.context'
 
 export default function Footer({viewer}) {
   const path = usePathname()
@@ -14,7 +13,6 @@ export default function Footer({viewer}) {
   const grid = useRef()
   const pill = useRef()
   const text = useRef()
-  const {isMobile} = useDeviceDetection()
 
   useGSAP(
     () => {
