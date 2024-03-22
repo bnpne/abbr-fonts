@@ -4,6 +4,7 @@ import FontStyle from '../../components/FontStyle'
 import {notEmpty} from 'libs/graphql/utils'
 import PreloadWebfonts from '../../components/PreloadWebfonts'
 import FontDetail from '../../components/FontDetail'
+import TextAnima from 'components/TextAnima'
 
 export default async function Home() {
   const data = await fetchGraphql('Index.graphql')
@@ -39,7 +40,7 @@ export default async function Home() {
                     '--optical-adjustment': node.opticalAdjustment,
                   }}
                 >
-                  {node.name}
+                  <TextAnima>{node.name}</TextAnima>
                 </Link>
               </FontStyle>
               {node.isNew && (

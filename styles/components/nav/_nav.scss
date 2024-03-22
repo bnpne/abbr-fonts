@@ -42,6 +42,19 @@
     justify-content: space-between;
     background: $gray;
     box-shadow: 0 0 4px #00000040;
+    @media screen and (max-width: 1440px) {
+      font-size: desktop-vw(13px, 1440px);
+      padding: desktop-vw(5px, 1440px) desktop-vw(24px, 1440px);
+      max-height: desktop-vw(28px, 1440px);
+      gap: desktop-vw(16px, 1440px);
+    }
+
+    @media screen and (max-width: 1024px) {
+      font-size: desktop-vw(13px, 1024px);
+      padding: desktop-vw(5px, 1024px) desktop-vw(24px, 1024px);
+      max-height: desktop-vw(28px, 1024px);
+      gap: desktop-vw(16px, 1024px);
+    }
 
     @media screen and (max-width: 430px) {
       font-size: mobile-vw(13px);

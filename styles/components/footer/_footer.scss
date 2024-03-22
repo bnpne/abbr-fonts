@@ -5,58 +5,14 @@
   &-container {
     width: 100%;
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    column-gap: desktop-vw(30px);
     height: 100%;
-    min-height: desktop-vw(300px);
+    min-height: desktop-vw(100px);
     position: relative;
     padding: desktop-vw(20px) 0;
-    margin-top: desktop-vw(100px);
+    margin-top: desktop-vw(50px);
 
     @media screen and (max-width: 430px) {
       padding-bottom: mobile-vw(150px);
-    }
-  }
-
-  &-text {
-    font-size: desktop-vw(24px);
-    line-height: desktop-vw(26.4px);
-    color: $black;
-    position: relative;
-    z-index: 4;
-    grid-column: 2 / 4;
-
-    @media screen and (max-width: 430px) {
-      font-size: mobile-vw(12px);
-      line-height: mobile-vw(13px);
-      grid-column: 1 / 5;
-    }
-
-    &-outer {
-      display: inline-block;
-      // overflow: hidden;
-      vertical-align: top;
-    }
-    &-inner {
-      display: inherit;
-      overflow: inherit;
-      vertical-align: inherit;
-    }
-  }
-
-  &-grid {
-    width: 100%;
-    height: 100%;
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    column-gap: desktop-vw(30px);
-    position: absolute;
-    z-index: 1;
-    top: 0;
-    left: 0;
-
-    &-col {
-      background: $gray;
     }
   }
 
@@ -69,7 +25,7 @@
     width: 100%;
     position: absolute;
     z-index: 5;
-    bottom: desktop-vw(20px);
+    bottom: 0;
     left: 50%;
     transform: translateX(-50%);
 
