@@ -63,6 +63,11 @@
         font-size: mobile-vw(24px);
         padding: mobile-vw(8px) mobile-vw(16px);
       }
+
+      &:hover {
+        background: #008020;
+        padding: desktop-vw(12px) desktop-vw(24px);
+      }
     }
   }
 

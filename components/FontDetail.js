@@ -88,6 +88,25 @@ function FontDetail({collection}) {
         ) : null}
       </div>
 
+      <div className="collection-info__buy">
+        {showBuyButton(collection) && (
+          <BuyButton
+            collectionId={collection.id}
+            collectionName={collection.name}
+          />
+        )}
+        {collection.minisiteLink && (
+          <a
+            href={collection.minisiteLink}
+            className="collection-info__minisite-link"
+            target="_blank"
+            rel="noopener"
+          >
+            {`${collection.name} Minisite`}
+          </a>
+        )}
+      </div>
+
       {!collection.tags.includes('Bespoke') && (
         <>
           <TypeTesters collectionId={collection.id} defaultMode="local" />
