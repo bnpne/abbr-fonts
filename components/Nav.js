@@ -70,6 +70,9 @@ export default function Nav({pages}) {
             {node.title}
           </ActiveLink>
         ))}
+        <ActiveLink className="nav-link" href="/test-fonts">
+          Trials
+        </ActiveLink>
         <ActiveLink className="nav-link" href="/customer-login">
           Log in
         </ActiveLink>

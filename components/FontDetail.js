@@ -62,7 +62,6 @@ function FontDetail({collection}) {
             </FontStyle>
           </div>
         )}
-
         {collection.images?.length ? (
           <div className="collection-info__images">
             <TextAnima display={'block'}>

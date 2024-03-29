@@ -16,6 +16,7 @@ export default function FontStyle({
     fontWeight: '400',
     fontStyle: 'normal',
   })
+  console.log(style)
 
   return (
     <span ref={anima} style={{...style, ...styleProp}} {...rest}>
