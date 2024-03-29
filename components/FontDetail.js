@@ -10,21 +10,24 @@ import FontStyle from './FontStyle'
 import Carousel from './Carousel'
 import FontdueHTML from './FontdueHTML'
 import TextAnima from './TextAnima'
+import PreloadWebfonts from './PreloadWebfonts'
 
 function showBuyButton(collection) {
   if (collection.sku) return true
 
   const hasFontStylesSKU = collection.fontStyles?.some(
-    style => style.sku !== null,
+    (style) => style.sku !== null
   )
   if (hasFontStylesSKU) return true
 
-  const hasBundlesSKU = collection.bundles?.some(bundle => bundle.sku !== null)
+  const hasBundlesSKU = collection.bundles?.some(
+    (bundle) => bundle.sku !== null
+  )
   if (hasBundlesSKU) return true
 
   if ('children' in collection) {
-    const hasChildrenSKU = collection.children?.some(child =>
-      showBuyButton(child),
+    const hasChildrenSKU = collection.children?.some((child) =>
+      showBuyButton(child)
     )
     if (hasChildrenSKU) return true
   }
@@ -32,12 +35,13 @@ function showBuyButton(collection) {
   return false
 }
 
-function FontDetail({collection}) {
+function FontDetail({ collection }) {
   return (
     <>
       <div className={`collection-info ${collection.collectionType}`}>
         {collection.fontStyles?.length === 1 ? (
           <div className="collection-info__name">
+            <PreloadWebfonts style={collection.featureStyle} />
             <FontStyle
               familyName={collection.featureStyle?.cssFamily}
               styleName={collection.featureStyle?.name}
