@@ -3,19 +3,29 @@
 import ActiveLink from './ActiveLink'
 import CartButton from 'fontdue-js/CartButton'
 import {usePathname} from 'next/navigation'
-import {useEffect, useRef} from 'react'
+import {useEffect, useRef, useState} from 'react'
 import gsap from 'gsap'
 import {useLenis} from '@studio-freight/react-lenis'
 import {useStore} from 'libs/store'
 import {useGSAP} from '@gsap/react'
+import {useMediaQuery} from '@studio-freight/hamo'
+import {slide as Menu} from 'react-burger-menu'
 
 export default function Nav({pages}) {
   const path = usePathname()
   const nav = useRef()
   const lenis = useLenis()
   const n = useStore()
-  // const t = useTheme()
+  const isMobile = useMediaQuery('(max-width: 800px)')
+  const [handleOpen, setHandleOpen] = useState(false)
 
+  const showMenu = () => {
+    handleOpen ? setHandleOpen(false) : setHandleOpen(true)
+  }
+
+  const handleOnClose = () => {
+    setHandleOpen(false)
+  }
   useGSAP(
     () => {
       if (path === '/' || path === '/bespoke') {
@@ -32,7 +42,7 @@ export default function Nav({pages}) {
         })
       }
     },
-    {scope: nav, dependencies: [path]},
+    {scope: nav, dependencies: [path, isMobile]},
   )
 
   useEffect(() => {
@@ -40,12 +50,6 @@ export default function Nav({pages}) {
       n.isNavOpened === true ? lenis.stop() : lenis.start()
     }
   }, [n.isNavOpened, lenis])
-
-  // const handleTheme = () => {
-  //   t.currentTheme === 'light'
-  //     ? t.setCurrentTheme('dark')
-  //     : t.setCurrentTheme('light')
-  // }
 
   return (
     <nav ref={nav} className="nav" data-border="true">
@@ -55,36 +59,77 @@ export default function Nav({pages}) {
         </div>
       )}
       <div className="nav-links">
-        <ActiveLink href="/" className="nav-link">
-          Typefaces
-        </ActiveLink>
-        <ActiveLink href="/bespoke" className="nav-link">
-          Bespoke
-        </ActiveLink>
-        {pages?.map(node => (
-          <ActiveLink
-            href={`/${node.slug?.name}`}
-            className="nav-link"
-            key={node.id}
-          >
-            {node.title}
-          </ActiveLink>
-        ))}
-        <ActiveLink className="nav-link" href="/test-fonts">
-          Trials
-        </ActiveLink>
-        <ActiveLink className="nav-link" href="/customer-login">
-          Log in
-        </ActiveLink>
-        <div className="nav-link" onClick={() => n.setIsNavOpened(true)}>
-          <CartButton label="Cart" buttonStyle="inline" />
-        </div>
-        {/*
-        <div className="nav-link" onClick={handleTheme}>
-          Theme
-        </div>
-        */}
+        {!isMobile ? (
+          <>
+            <ActiveLink href="/" className="nav-link">
+              Typefaces
+            </ActiveLink>
+            <ActiveLink href="/bespoke" className="nav-link">
+              Bespoke
+            </ActiveLink>
+            {pages?.map(node => (
+              <ActiveLink
+                href={`/${node.slug?.name}`}
+                className="nav-link"
+                key={node.id}
+              >
+                {node.title}
+              </ActiveLink>
+            ))}
+            <ActiveLink className="nav-link" href="/test-fonts">
+              Trials
+            </ActiveLink>
+            <ActiveLink className="nav-link" href="/customer-login">
+              Log in
+            </ActiveLink>
+            <div className="nav-link" onClick={() => n.setIsNavOpened(true)}>
+              <CartButton label="Cart" buttonStyle="inline" />
+            </div>
+          </>
+        ) : (
+          <>
+            <div className="nav-link" onClick={showMenu}>
+              Menu
+            </div>
+            <ActiveLink className="nav-link" href="/customer-login">
+              Log in
+            </ActiveLink>
+            <div className="nav-link" onClick={() => n.setIsNavOpened(true)}>
+              <CartButton label="Cart" buttonStyle="inline" />
+            </div>
+          </>
+        )}
       </div>
+      {isMobile && (
+        <Menu
+          noTransition
+          itemListElement="span"
+          customCrossIcon={false}
+          customBurgerIcon={false}
+          isOpen={handleOpen}
+          noOverlay
+          onClose={handleOnClose}
+        >
+          <ActiveLink onClick={showMenu} href="/">
+            Typefaces
+          </ActiveLink>
+          <ActiveLink onClick={showMenu} href="/bespoke">
+            Bespoke
+          </ActiveLink>
+          {pages?.map(node => (
+            <ActiveLink
+              onClick={showMenu}
+              href={`/${node.slug?.name}`}
+              key={node.id}
+            >
+              {node.title}
+            </ActiveLink>
+          ))}
+          <ActiveLink onClick={showMenu} href="/test-fonts">
+            Trials
+          </ActiveLink>
+        </Menu>
+      )}
     </nav>
   )
 }
