@@ -59,6 +59,7 @@ export default async function RootLayout({children}) {
         <FontdueProvider
           config={{
             typeTester: {selectable: true, variableAxesPosition: 'auto'},
+            storeModal: {indexExcludeTags: ['Bespoke']},
           }}
         >
           <Layout>
