@@ -56,7 +56,6 @@ export default function Nav({pages}) {
         reversed: true,
       })
       lenis.on('scroll', e => {
-        console.log(e.progress)
         if (e.direction === 1) {
           if (e.progress > 0) {
             t.play()
