@@ -7,7 +7,6 @@ import {useEffect, useRef, useState} from 'react'
 import gsap from 'gsap'
 import {useLenis} from '@studio-freight/react-lenis'
 import {useStore} from 'libs/store'
-import {useGSAP} from '@gsap/react'
 import {useMediaQuery} from '@studio-freight/hamo'
 import {slide as Menu} from 'react-burger-menu'
 
@@ -26,28 +25,52 @@ export default function Nav({pages}) {
   const handleOnClose = () => {
     setHandleOpen(false)
   }
-  useGSAP(
-    () => {
-      if (path === '/' || path === '/bespoke') {
-        gsap.to('.nav-text', {
-          height: 0,
-          duration: 0.6,
-          ease: 'expo.out',
-          yoyoEase: true,
-          scrollTrigger: {
-            trigger: '.home',
-            start: 'top top-=20px',
-            toggleActions: 'play none reverse reverse',
-          },
-        })
-      }
-    },
-    {scope: nav, dependencies: [path, isMobile]},
-  )
+  // useGSAP(
+  //   () => {
+  //     if (path === '/' || path === '/bespoke') {
+  //       gsap.to('.nav-text', {
+  //         height: 0,
+  //         duration: 0.6,
+  //         ease: 'expo.out',
+  //         yoyoEase: true,
+  //         scrollTrigger: {
+  //           trigger: '.home',
+  //           start: 'top top+=200px',
+  //           toggleActions: 'play none reverse reverse',
+  //         },
+  //       })
+  //     }
+  //   },
+  //   {dependencies: [path, isMobile, '.home']},
+  // )
 
   useEffect(() => {
     if (lenis) {
       n.isNavOpened === true ? lenis.stop() : lenis.start()
+      let t = gsap.to('.nav-text', {
+        height: 0,
+        duration: 0.6,
+        ease: 'expo.out',
+        yoyoEase: true,
+        paused: true,
+        reversed: true,
+      })
+      lenis.on('scroll', e => {
+        console.log(e.progress)
+        if (e.direction === 1) {
+          if (e.progress > 0) {
+            t.play()
+          } else {
+            t.reverse()
+          }
+        } else if (e.direction === -1) {
+          if (e.progress > 0.1) {
+            t.play()
+          } else {
+            t.reverse()
+          }
+        }
+      })
     }
   }, [n.isNavOpened, lenis])
 

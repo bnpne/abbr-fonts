@@ -44,14 +44,20 @@ export default async function Home() {
                   <TextAnima>{node.name}</TextAnima>
                 </Link>
               </FontStyle>
-              <PillAnima className={'home-collection-new-wrapper'}>
-                {node.isNew && <span className="home-collection-new">New</span>}
-              </PillAnima>
-              <PillAnima className={'home-collection-styles-wrapper'}>
-                <span className="home-collection-styles">
-                  {`${styleCount} ${styleCount > 1 ? 'STYLES' : 'STYLE'}`}
-                </span>
-              </PillAnima>
+              {(node.isNew || styleCount) && (
+                <>
+                  <PillAnima className={'home-collection-new-wrapper'}>
+                    {node.isNew && (
+                      <span className="home-collection-new">New</span>
+                    )}
+                  </PillAnima>
+                  <PillAnima className={'home-collection-styles-wrapper'}>
+                    <span className="home-collection-styles">
+                      {`${styleCount} ${styleCount > 1 ? 'STYLES' : 'STYLE'}`}
+                    </span>
+                  </PillAnima>
+                </>
+              )}
             </h2>
           )
         }
