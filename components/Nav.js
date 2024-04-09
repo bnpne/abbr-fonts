@@ -37,7 +37,7 @@ export default function Nav({pages}) {
           scrollTrigger: {
             trigger: '.home',
             start: 'top top-=20px',
-            toggleActions: 'play pause reverse reverse',
+            toggleActions: 'play none reverse reverse',
           },
         })
       }
