@@ -38,6 +38,9 @@ export default function Footer({viewer}) {
             >
               ABBR. Projects
             </Link>
+            <Link className="footer-link" href="/licenses">
+              EULA
+            </Link>
           </div>
         </div>
       </div>

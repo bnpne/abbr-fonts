@@ -6,7 +6,7 @@ export default async function LicensesLayout({children}) {
 
   return (
     <section className="license-page">
-      <h1 className="license-page__title">Font licenses</h1>
+      <h1 className="license-page__title">Abbreviated Foundry Font Licenses</h1>
 
       <div className="license-page__licenses">
         <ul className="license-page__licenses__wrapper">
