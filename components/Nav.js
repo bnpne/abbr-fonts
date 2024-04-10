@@ -44,8 +44,13 @@ export default function Nav({pages}) {
   //   {dependencies: [path, isMobile, '.home']},
   // )
 
+  useEffect(() => {})
+
   useEffect(() => {
+    // gsap.set('.nav-text', {height: 0})
     if (lenis) {
+      lenis.scrollTo(0, {immediate: true})
+      gsap.set('.nav-text', {height: 'auto'})
       n.isNavOpened === true ? lenis.stop() : lenis.start()
       let t = gsap.to('.nav-text', {
         height: 0,
@@ -71,7 +76,7 @@ export default function Nav({pages}) {
         }
       })
     }
-  }, [n.isNavOpened, lenis])
+  }, [n.isNavOpened, lenis, path])
 
   return (
     <nav ref={nav} className="nav" data-border="true">
