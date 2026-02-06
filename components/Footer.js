@@ -2,9 +2,9 @@
 
 import Link from 'next/link'
 import FontdueHTML from './FontdueHTML'
-import {useRef} from 'react'
+import { useRef } from 'react'
 
-export default function Footer({viewer}) {
+export default function Footer({ viewer }) {
   const footer = useRef()
   const pill = useRef()
 
@@ -27,7 +27,7 @@ export default function Footer({viewer}) {
             <Link
               className="footer-link"
               target="_blank"
-              href="mailto:projects@abranowicz.com"
+              href="mailto:studio@abbrprojects.com"
             >
               Contact
             </Link>
