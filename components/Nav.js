@@ -2,15 +2,15 @@
 
 import ActiveLink from './ActiveLink'
 import CartButton from 'fontdue-js/CartButton'
-import {usePathname} from 'next/navigation'
-import {useEffect, useRef, useState} from 'react'
+import { usePathname } from 'next/navigation'
+import { useEffect, useRef, useState } from 'react'
 import gsap from 'gsap'
-import {useLenis} from '@studio-freight/react-lenis'
-import {useStore} from 'libs/store'
-import {useMediaQuery} from '@studio-freight/hamo'
-import {slide as Menu} from 'react-burger-menu'
+import { useLenis } from 'lenis/react'
+import { useStore } from 'libs/store'
+import { useMediaQuery } from 'hamo'
+import { slide as Menu } from 'react-burger-menu'
 
-export default function Nav({pages}) {
+export default function Nav({ pages }) {
   const path = usePathname()
   const nav = useRef()
   const lenis = useLenis()
@@ -49,8 +49,8 @@ export default function Nav({pages}) {
   useEffect(() => {
     // gsap.set('.nav-text', {height: 0})
     if (lenis) {
-      lenis.scrollTo(0, {immediate: true})
-      gsap.set('.nav-text', {height: 'auto'})
+      lenis.scrollTo(0, { immediate: true })
+      gsap.set('.nav-text', { height: 'auto' })
       n.isNavOpened === true ? lenis.stop() : lenis.start()
       let t = gsap.to('.nav-text', {
         height: 0,
@@ -60,7 +60,7 @@ export default function Nav({pages}) {
         paused: true,
         reversed: true,
       })
-      lenis.on('scroll', e => {
+      lenis.on('scroll', (e) => {
         if (e.direction === 1) {
           if (e.progress > 0) {
             t.play()
@@ -94,7 +94,7 @@ export default function Nav({pages}) {
             <ActiveLink href="/bespoke" className="nav-link">
               Bespoke
             </ActiveLink>
-            {pages?.map(node => (
+            {pages?.map((node) => (
               <ActiveLink
                 href={`/${node.slug?.name}`}
                 className="nav-link"
@@ -143,7 +143,7 @@ export default function Nav({pages}) {
           <ActiveLink onClick={showMenu} href="/bespoke">
             Bespoke
           </ActiveLink>
-          {pages?.map(node => (
+          {pages?.map((node) => (
             <ActiveLink
               onClick={showMenu}
               href={`/${node.slug?.name}`}

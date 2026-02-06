@@ -1,19 +1,19 @@
 import fs from 'fs/promises'
 import path from 'path'
 import FontdueHTML from '/components/FontdueHTML'
-import {fetchGraphql} from 'libs/graphql'
-import {notEmpty} from 'libs/graphql/utils'
-import {notFound} from 'next/navigation'
+import { fetchGraphql } from 'libs/graphql'
+import { notEmpty } from 'libs/graphql/utils'
+import { notFound } from 'next/navigation'
 
-async function getPage({params}) {
-  const {viewer} = await fetchGraphql('Page.graphql', {
+async function getPage(params) {
+  const { viewer } = await fetchGraphql('Page.graphql', {
     slug: params.slug,
   })
   return viewer.slug?.page
 }
 
-export async function generateMetadata(props) {
-  const page = await getPage(props)
+export async function generateMetadata({ params }) {
+  const page = await getPage(await params)
   if (!page) return {}
   return {
     ...page.pageMetadata,
@@ -21,8 +21,8 @@ export async function generateMetadata(props) {
   }
 }
 
-export default async function Page(props) {
-  const page = await getPage(props)
+export default async function Page({ params }) {
+  const page = await getPage(await params)
   if (!page) notFound()
 
   return (
@@ -38,17 +38,17 @@ export async function generateStaticParams() {
   // Solves an issue with Next.js when these [slug]/page.js clash with named
   // name/page.js routes
   const dirs = (
-    await fs.readdir(path.resolve(__dirname, '..'), {withFileTypes: true})
+    await fs.readdir(path.resolve(__dirname, '..'), { withFileTypes: true })
   )
-    .filter(dir => dir.isDirectory())
-    .map(dir => dir.name)
+    .filter((dir) => dir.isDirectory())
+    .map((dir) => dir.name)
 
   const data = await fetchGraphql('PagePaths.graphql')
   const slugs =
     data.viewer.pages?.edges
-      ?.map(edge => edge?.node?.slug?.name)
+      ?.map((edge) => edge?.node?.slug?.name)
       .filter(notEmpty)
-      .filter(slug => !dirs.includes(slug)) ?? []
+      .filter((slug) => !dirs.includes(slug)) ?? []
 
-  return slugs.map(slug => ({slug}))
+  return slugs.map((slug) => ({ slug }))
 }

@@ -1,20 +1,20 @@
 import Carousel from 'components/Carousel'
-import {fetchGraphql} from 'libs/graphql'
-import {notFound} from 'next/navigation'
+import { fetchGraphql } from 'libs/graphql'
+import { notFound } from 'next/navigation'
 import Image from 'next/image'
 import Link from 'next/link'
-import {Fragment} from 'react'
+import { Fragment } from 'react'
 import FontdueHTML from 'components/FontdueHTML'
-import {notEmpty} from 'libs/graphql/utils'
+import { notEmpty } from 'libs/graphql/utils'
 
-async function getData({params}) {
+async function getData(params) {
   return fetchGraphql('Article.graphql', {
     params,
   })
 }
 
-export async function generateMetadata(props) {
-  const data = await getData(props)
+export async function generateMetadata({ params }) {
+  const data = await getData(await params)
   const article = data.viewer.slug?.article
   if (!article) return {}
 
@@ -24,8 +24,8 @@ export async function generateMetadata(props) {
   }
 }
 
-export default async function Article(props) {
-  const data = await getData(props)
+export default async function Article({ params }) {
+  const data = await getData(await params)
   const article = data.viewer.slug?.article
   if (!article) notFound()
 
@@ -76,8 +76,8 @@ export async function generateStaticParams() {
   const data = await fetchGraphql('ArticlePaths.graphql')
   const slugs =
     data.viewer.articles?.edges
-      ?.map(edge => edge?.node?.slug?.name)
+      ?.map((edge) => edge?.node?.slug?.name)
       .filter(notEmpty) ?? []
 
-  return slugs.map(slug => ({slug}))
+  return slugs.map((slug) => ({ slug }))
 }

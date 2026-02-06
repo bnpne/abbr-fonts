@@ -11,11 +11,8 @@ const nextConfig = {
   transpilePackages: ['@studio-freight/compono'],
   experimental: {
     optimizeCss: true,
-    // storyblok preview
-    // nextScriptWorkers: process.env.NODE_ENV !== 'development',
     urlImports: ['https://cdn.skypack.dev', 'https://unpkg.com'],
     webVitalsAttribution: ['CLS', 'LCP'],
-    nextScriptWorkers: true,
   },
   compiler: {
     removeConsole: process.env.NODE_ENV !== 'development',
@@ -34,6 +31,7 @@ const nextConfig = {
   },
   sassOptions: {
     // add @import 'styles/_functions'; to all scss files.
+    silenceDeprecations: ['legacy-js-api', 'import', 'global-builtin'],
     includePaths: [path.join(__dirname, 'styles')],
     prependData: `@import 'styles/tools/_functions';`,
     functions: {
@@ -56,7 +54,7 @@ const nextConfig = {
     },
   },
   webpack: (config, options) => {
-    const {dir} = options
+    const { dir } = options
 
     config.module.rules.push(
       {
@@ -141,7 +139,7 @@ const nextConfig = {
          * @param {?string} instance.issuer Absolute path to the module that requested the package
          * @returns {boolean} true to exclude the instance, false otherwise
          */
-        exclude: instance => instance.name === 'fbjs',
+        exclude: (instance) => instance.name === 'fbjs',
         // Emit errors (regardless of emitError value) when the specified packages are duplicated (default: [])
         alwaysEmitErrorsFor: ['react', 'react-router'],
       }),

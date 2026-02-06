@@ -1,17 +1,17 @@
 import React from 'react'
-import {fetchGraphql} from 'libs/graphql'
-import {notEmpty} from 'libs/graphql/utils'
-import {notFound} from 'next/navigation'
+import { fetchGraphql } from 'libs/graphql'
+import { notEmpty } from 'libs/graphql/utils'
+import { notFound } from 'next/navigation'
 import FontdueHTML from '/components/FontdueHTML'
 
-async function getData({params}) {
+async function getData(params) {
   return fetchGraphql('License.graphql', {
     slug: params.slug,
   })
 }
 
-export async function generateMetadata(props) {
-  const data = await getData(props)
+export async function generateMetadata({ params }) {
+  const data = await getData(await params)
   const license = data.viewer.slug?.license
   if (!license) return {}
   return {
@@ -19,8 +19,8 @@ export async function generateMetadata(props) {
   }
 }
 
-export default async function Font(props) {
-  const data = await getData(props)
+export default async function Font({ params }) {
+  const data = await getData(await params)
 
   const license = data.viewer.slug?.license
   if (!license) notFound()
@@ -35,8 +35,9 @@ export default async function Font(props) {
 export async function generateStaticParams() {
   const data = await fetchGraphql('LicensePaths.graphql')
   const slugs =
-    data.viewer.licenses?.map(license => license.slug?.name).filter(notEmpty) ??
-    []
+    data.viewer.licenses
+      ?.map((license) => license.slug?.name)
+      .filter(notEmpty) ?? []
 
-  return slugs.map(slug => ({slug}))
+  return slugs.map((slug) => ({ slug }))
 }

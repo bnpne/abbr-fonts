@@ -1,5 +1,5 @@
 import ActiveLink from 'components/ActiveLink'
-import {fetchGraphql} from 'libs/graphql'
+import { fetchGraphql } from 'libs/graphql'
 import Link from 'next/link'
 import Image from 'next/image'
 
@@ -7,8 +7,9 @@ export const metadata = {
   title: 'Articles',
 }
 
-export default async function Articles({searchParams}) {
-  const tagParam = searchParams?.tag
+export default async function Articles({ searchParams }) {
+  const resolvedSearchParams = await searchParams
+  const tagParam = resolvedSearchParams?.tag
   const data = await fetchGraphql('Articles.graphql', {
     tags: tagParam ? [tagParam] : null,
   })

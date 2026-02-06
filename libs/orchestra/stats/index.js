@@ -1,4 +1,4 @@
-import { useFrame } from '@studio-freight/hamo'
+import { useTempus } from 'tempus/react'
 import { useEffect, useMemo } from 'react'
 import _Stats from 'stats.js'
 
@@ -14,11 +14,17 @@ export function Stats() {
     }
   }, [stats])
 
-  useFrame(() => {
-    stats.begin()
-  }, -Infinity)
+  useTempus(
+    () => {
+      stats.begin()
+    },
+    { priority: -Infinity },
+  )
 
-  useFrame(() => {
-    stats.end()
-  }, Infinity)
+  useTempus(
+    () => {
+      stats.end()
+    },
+    { priority: Infinity },
+  )
 }

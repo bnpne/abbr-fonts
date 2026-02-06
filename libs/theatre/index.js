@@ -1,4 +1,4 @@
-import { useFrame } from '@studio-freight/hamo'
+import { useTempus } from 'tempus/react'
 import { createRafDriver, getProject, onChange } from '@theatre/core'
 import {
   createContext,
@@ -16,7 +16,7 @@ const RafDriverContext = createContext()
 export function RafDriverProvider({ children, id = 'default' }) {
   const [theatreRaf] = useState(() => createRafDriver({ name: id }))
 
-  useFrame((time) => {
+  useTempus((time) => {
     theatreRaf.tick(time)
   })
 

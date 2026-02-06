@@ -1,17 +1,17 @@
 import React from 'react'
-import {fetchGraphql} from 'libs/graphql'
-import {notEmpty} from 'libs/graphql/utils'
+import { fetchGraphql } from 'libs/graphql'
+import { notEmpty } from 'libs/graphql/utils'
 import FontDetail from 'components/FontDetail'
-import {notFound} from 'next/navigation'
+import { notFound } from 'next/navigation'
 
-async function getData({params}) {
+async function getData(params) {
   return fetchGraphql('Font.graphql', {
     slug: params.slug,
   })
 }
 
-export async function generateMetadata(props) {
-  const {viewer} = await getData(props)
+export async function generateMetadata({ params }) {
+  const { viewer } = await getData(await params)
   const font = viewer.slug?.fontCollection
   if (!font) return {}
 
@@ -21,8 +21,8 @@ export async function generateMetadata(props) {
   }
 }
 
-export default async function Font(props) {
-  const data = await getData(props)
+export default async function Font({ params }) {
+  const data = await getData(await params)
   const collection = data.viewer.slug?.fontCollection
   if (!collection) notFound()
 
@@ -33,8 +33,8 @@ export async function generateStaticParams() {
   const data = await fetchGraphql('FontPaths.graphql')
   const slugs =
     data.viewer.fontCollections?.edges
-      ?.map(edge => edge?.node?.slug?.name)
+      ?.map((edge) => edge?.node?.slug?.name)
       .filter(notEmpty) ?? []
 
-  return slugs.map(slug => ({slug}))
+  return slugs.map((slug) => ({ slug }))
 }
